@@ -41,5 +41,8 @@ bin/
 ### VS Code ###
 .vscode/
 
+# Local secrets
+secrets.properties
+
 ### Mac OS ###
 .DS_Store
