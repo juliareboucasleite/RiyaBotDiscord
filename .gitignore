@@ -43,6 +43,9 @@ bin/
 
 # Local secrets
 secrets.properties
+data/passwords.tsv
+data/password-share-requests.tsv
+data/*password*.tsv
 
 ### Mac OS ###
 .DS_Store
