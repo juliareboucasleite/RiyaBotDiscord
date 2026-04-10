@@ -42,6 +42,7 @@ bin/
 .vscode/
 
 # Local secrets
+*data/
 secrets.properties
 data/passwords.tsv
 data/password-share-requests.tsv
