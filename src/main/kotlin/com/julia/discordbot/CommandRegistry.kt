@@ -5,10 +5,14 @@ import com.julia.discordbot.commands.AvatarCommand
 import com.julia.discordbot.commands.BotCommand
 import com.julia.discordbot.commands.ClearCommand
 import com.julia.discordbot.commands.ConfigCommand
+import com.julia.discordbot.commands.DenyPasswordCommand
+import com.julia.discordbot.commands.GuardarCommand
 import com.julia.discordbot.commands.HelpCommand
 import com.julia.discordbot.commands.PingCommand
+import com.julia.discordbot.commands.ApprovePasswordCommand
 import com.julia.discordbot.commands.ReportCommand
 import com.julia.discordbot.commands.ServerInfoCommand
+import com.julia.discordbot.commands.ShowPasswordCommand
 import com.julia.discordbot.commands.SuggestCommand
 import com.julia.discordbot.commands.TimeoutCommand
 import com.julia.discordbot.commands.UserInfoCommand
@@ -26,6 +30,10 @@ class CommandRegistry(val commands: List<BotCommand>) {
             val commands = listOf(
                 PingCommand(),
                 HelpCommand(),
+                GuardarCommand(),
+                ShowPasswordCommand(),
+                ApprovePasswordCommand(),
+                DenyPasswordCommand(),
                 ConfigCommand(),
                 UserInfoCommand(),
                 ServerInfoCommand(),
