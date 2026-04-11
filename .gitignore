@@ -50,3 +50,4 @@ data/*password*.tsv
 
 ### Mac OS ###
 .DS_Store
+data/guild-settings.properties
