@@ -3,6 +3,7 @@ package com.julia.discordbot
 import com.julia.discordbot.commands.AutoRoleCommand
 import com.julia.discordbot.commands.AvatarCommand
 import com.julia.discordbot.commands.BotCommand
+import com.julia.discordbot.commands.BotInfoCommand
 import com.julia.discordbot.commands.ClearCommand
 import com.julia.discordbot.commands.ConfigCommand
 import com.julia.discordbot.commands.DenyPasswordCommand
@@ -29,6 +30,7 @@ class CommandRegistry(val commands: List<BotCommand>) {
         fun createDefault(): CommandRegistry {
             val commands = listOf(
                 PingCommand(),
+                BotInfoCommand(),
                 HelpCommand(),
                 GuardarCommand(),
                 ShowPasswordCommand(),

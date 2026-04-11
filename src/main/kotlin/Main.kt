@@ -1,5 +1,6 @@
 package com.julia.discordbot
 
+import com.julia.discordbot.dashboard.DashboardServer
 import dev.kord.core.Kord
 import dev.kord.core.event.gateway.ReadyEvent
 import dev.kord.core.on
@@ -14,8 +15,16 @@ fun main() = runBlocking {
     val kord = createKord(loadToken())
     val services = BotServices.create()
     val commandRegistry = CommandRegistry.createDefault()
+    val dashboardServer = DashboardServer(kord, services)
     registerRuntimeHandlers(kord, commandRegistry, services)
-    login(kord)
+
+    dashboardServer.start()
+
+    try {
+        login(kord)
+    } finally {
+        dashboardServer.stop()
+    }
 }
 
 private suspend fun createKord(token: String): Kord = Kord(token)

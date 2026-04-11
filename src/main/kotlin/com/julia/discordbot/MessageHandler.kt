@@ -6,7 +6,7 @@ import dev.kord.core.event.guild.MemberJoinEvent
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 
-private const val COMMAND_PREFIX = "!"
+private const val DEFAULT_PREFIX = "!"
 
 fun registerHandlers(kord: Kord, commandRegistry: CommandRegistry, services: BotServices) {
     registerMessageHandler(kord, commandRegistry, services)
@@ -18,9 +18,18 @@ fun registerMessageHandler(kord: Kord, commandRegistry: CommandRegistry, service
         if (message.author?.isBot == true) return@on
 
         val content = message.content.trim()
-        if (!content.startsWith(COMMAND_PREFIX)) return@on
 
-        val rawCommand = content.removePrefix(COMMAND_PREFIX)
+        // Determine guild-specific prefix
+        val guildId = message.data.guildId.value?.value
+        val prefix = if (guildId != null) {
+            services.settingsStore.get(guildId).prefix
+        } else {
+            DEFAULT_PREFIX
+        }
+
+        if (!content.startsWith(prefix)) return@on
+
+        val rawCommand = content.removePrefix(prefix)
         val commandName = rawCommand.substringBefore(" ").lowercase()
         val args = rawCommand
             .substringAfter(" ", "")
@@ -29,6 +38,12 @@ fun registerMessageHandler(kord: Kord, commandRegistry: CommandRegistry, service
             .filter { it.isNotBlank() }
 
         val command = commandRegistry.find(commandName) ?: return@on
+
+        // Check if command is disabled for this guild
+        if (guildId != null && !services.settingsStore.isCommandEnabled(guildId, command.name)) {
+            return@on
+        }
+
         command.execute(CommandContext(kord, this, args, commandRegistry, services))
     }
 }
