@@ -1,2 +1,2 @@
-# RiyaBotDiscord
-
+### RiyaBotDiscord
+RiyaBotDiscord é um sistema que combina um bot de Discord com um dashboard web, desenvolvido em Kotlin utilizando Ktor. O projeto permite gerir configurações, comandos e funcionalidades do bot em tempo real através de um painel administrativo, com suporte a configuração por servidor e integração direta entre o backend e o bot. O objetivo é criar uma solução modular onde o dashboard controla o comportamento do bot de forma dinâmica, explorando desenvolvimento backend, integração de serviços e construção de aplicações completas.
